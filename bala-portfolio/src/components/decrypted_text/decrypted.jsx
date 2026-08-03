@@ -8,7 +8,7 @@ import {
 
 import { motion } from "motion/react";
 
-import "./Decrypted.css";
+import "./decrypted.css";
 
 function Decrypted({
   text,
