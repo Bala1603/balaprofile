@@ -1,0 +1,32 @@
+.decrypted-wrapper {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.decrypted-screen-reader {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+
+  white-space: nowrap;
+
+  border: 0;
+}
+
+.decrypted-revealed {
+  color: var(--white-main);
+}
+
+.decrypted-encrypted {
+  color: var(--red-primary);
+  text-shadow: 0 0 8px var(--red-glow);
+}
