@@ -15,7 +15,7 @@ import tataCertificate from "../../assets/images/Certificates/Tata.jpg";
 import tcsCertificate from "../../assets/images/Certificates/TCS.jpg";
 import login360Certificate from "../../assets/images/Certificates/Login360.jpg";
 
-import linkedinLogo from "../../assets/images/Linkedin_logo.png";
+import linkedinLogo from "../../assets/images/Linkedln_logo.png";
 import letsupgradeLogo from "../../assets/images/letsupgrad_logo.png";
 import upgradLogo from "../../assets/images/upgrad_logo.png";
 import tataLogo from "../../assets/images/tata_logo.png";
