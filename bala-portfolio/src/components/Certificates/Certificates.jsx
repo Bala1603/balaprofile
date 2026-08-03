@@ -22,7 +22,7 @@ import tataLogo from "../../assets/images/tata_logo.png";
 import tcsLogo from "../../assets/images/tcs_logo.png";
 import login360Logo from "../../assets/images/login360_logo.jpg";
 
-const Certificates = [
+const certificatesData = [
   {
     id: 1,
     title: "Career Skills in Data Analytics",
@@ -136,7 +136,7 @@ function Certificates() {
 
         <div className="certificates-grid">
 
-          {certificates.map((certificate) => (
+          {certificatesData.map((certificate) => (
 
             <div
               className="certificate-card"
