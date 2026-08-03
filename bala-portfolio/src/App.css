@@ -1,0 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.portfolio-app {
+  width: min(100%, 1400px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 30px clamp(20px, 4vw, 60px) 0;
+}
