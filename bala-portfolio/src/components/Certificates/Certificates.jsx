@@ -22,7 +22,7 @@ import tataLogo from "../../assets/images/tata_logo.png";
 import tcsLogo from "../../assets/images/tcs_logo.png";
 import login360Logo from "../../assets/images/login360_logo.jpg";
 
-const certificates = [
+const Certificates = [
   {
     id: 1,
     title: "Career Skills in Data Analytics",
