@@ -89,33 +89,33 @@ export default function LineSidebar() {
       .map((item) => document.querySelector(item.href))
       .filter(Boolean);
 
-    const onScroll = () => {
-      const scrollCenter = window.scrollY + window.innerHeight * 0.35;
-      let nextIndex = activeRef.current;
+    if (!sectionEls.length) return undefined;
 
-      sectionEls.forEach((section, index) => {
-        const top = section.offsetTop;
-        const bottom = top + section.offsetHeight;
+    const rootMargin = window.innerWidth <= 560
+      ? "-18% 0px -48% 0px"
+      : "-25% 0px -45% 0px";
 
-        if (scrollCenter >= top && scrollCenter < bottom) {
-          nextIndex = index;
-        }
-      });
+    const observer = new IntersectionObserver((entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      if (nextIndex !== activeRef.current) {
+      if (!visibleEntry) return;
+
+      const nextIndex = sectionEls.indexOf(visibleEntry.target);
+
+      if (nextIndex !== -1 && nextIndex !== activeRef.current) {
         activeRef.current = nextIndex;
         setActive(nextIndex);
       }
-    };
+    }, {
+      threshold: [0.18, 0.38, 0.55, 0.72],
+      rootMargin,
+    });
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    sectionEls.forEach((section) => observer.observe(section));
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+    return () => observer.disconnect();
   }, [items]);
 
   return (

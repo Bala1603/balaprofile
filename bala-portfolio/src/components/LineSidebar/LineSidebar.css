@@ -14,7 +14,7 @@
     width:fit-content;
     max-height:calc(100vh - 160px);
     overflow:hidden;
-    transition:right 260ms ease, padding 260ms ease, border-radius 260ms ease, transform 260ms ease;
+    transition:right 180ms ease, padding 180ms ease, border-radius 180ms ease, transform 180ms ease;
     will-change:transform;
 }
 
@@ -57,7 +57,7 @@
     display:inline-block;
     transform:translateX(calc(var(--effect) * 24px));
     color:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #c9c9c9);
-    transition:color 240ms ease, transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+    transition:color 160ms ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 160ms ease;
     opacity:calc(0.58 + var(--effect) * 0.42);
     will-change:transform, color, opacity;
 }
@@ -71,7 +71,7 @@
     background:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #555);
     transform-origin:left;
     transform:translateY(-50%) scaleX(calc(.68 + var(--effect)));
-    transition:transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), background 220ms ease, opacity 260ms ease;
+    transition:transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background 160ms ease, opacity 160ms ease;
     opacity:calc(0.4 + var(--effect) * 0.6);
 }
 
@@ -125,28 +125,28 @@
         top: auto;
         bottom: 12px;
         transform: none;
-        padding: 14px;
+        padding: 12px 12px;
         border-radius: 18px;
-        max-width: 180px;
+        max-width: 170px;
         max-height: calc(100vh - 24px);
     }
 
     .lineSidebar ul {
-        gap: 14px;
+        gap: 12px;
     }
 
     .lineSidebar a {
-        font-size: 13px;
+        font-size: 12.5px;
     }
 
     .lineMarker {
-        left: -40px;
-        width: 30px;
+        left: -34px;
+        width: 24px;
     }
 
     .lineSidebar li:not(:last-child)::after {
-        left: -40px;
-        width: 16px;
-        top: calc(100% + 8px);
+        left: -34px;
+        width: 14px;
+        top: calc(100% + 7px);
     }
 }
