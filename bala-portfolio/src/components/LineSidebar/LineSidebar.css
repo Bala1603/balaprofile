@@ -14,7 +14,8 @@
     width:fit-content;
     max-height:calc(100vh - 160px);
     overflow:hidden;
-    transition:right 220ms ease, padding 220ms ease, border-radius 220ms ease;
+    transition:right 260ms ease, padding 260ms ease, border-radius 260ms ease, transform 260ms ease;
+    will-change:transform;
 }
 
 .lineSidebar ul{
@@ -41,23 +42,24 @@
 }
 
 .lineSidebar li.active a {
-    color: #e82f2f;
+    color:#fff;
 }
 
 .lineSidebar li.active .lineMarker {
-    background: #ef4444;
+    background:#ef4444;
 }
 
 .lineSidebar a{
     color:#c9c9c9;
     text-decoration:none;
-    font-size:17px;
+    font-size:clamp(14px, 1.2vw, 17px);
     font-weight:600;
     display:inline-block;
     transform:translateX(calc(var(--effect) * 24px));
     color:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #c9c9c9);
-    transition:color 220ms ease, transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change:transform, color;
+    transition:color 240ms ease, transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+    opacity:calc(0.58 + var(--effect) * 0.42);
+    will-change:transform, color, opacity;
 }
 
 .lineMarker{
@@ -68,8 +70,9 @@
     height:2px;
     background:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #555);
     transform-origin:left;
-    transform:translateY(-50%) scaleX(calc(.65 + var(--effect)));
-    transition:transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), background 220ms ease;
+    transform:translateY(-50%) scaleX(calc(.68 + var(--effect)));
+    transition:transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), background 220ms ease, opacity 260ms ease;
+    opacity:calc(0.4 + var(--effect) * 0.6);
 }
 
 .lineSidebar li:not(:last-child)::after{
