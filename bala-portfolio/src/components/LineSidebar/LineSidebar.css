@@ -124,11 +124,19 @@
         right: 8px;
         top: auto;
         bottom: 12px;
-        transform: none;
+        transform: translateX(calc(100% + 18px));
+        opacity: 0;
+        pointer-events: none;
         padding: 12px 12px;
         border-radius: 18px;
         max-width: 170px;
         max-height: calc(100vh - 24px);
+    }
+
+    .lineSidebarContainer.mobile-open {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .lineSidebar ul {

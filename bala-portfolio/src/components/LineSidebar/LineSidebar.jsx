@@ -6,7 +6,7 @@ const CURVES = {
   smooth: (p) => p * p * (3 - 2 * p),
 };
 
-export default function LineSidebar() {
+export default function LineSidebar({ isOpen = false, onNavigate }) {
   const items = [
     { label: "Home", href: "#home" },
     { label: "Projects", href: "#projects" },
@@ -119,7 +119,7 @@ export default function LineSidebar() {
   }, [items]);
 
   return (
-    <aside className="lineSidebarContainer">
+    <aside className={`lineSidebarContainer ${isOpen ? "mobile-open" : ""}`}>
 
       <nav className="lineSidebar">
 
@@ -135,7 +135,10 @@ export default function LineSidebar() {
             <li
               key={item.label}
               ref={(el) => (itemRefs.current[i] = el)}
-              onClick={() => setActive(i)}
+              onClick={() => {
+                setActive(i);
+                onNavigate?.();
+              }}
               className={active === i ? "active" : ""}
             >
 

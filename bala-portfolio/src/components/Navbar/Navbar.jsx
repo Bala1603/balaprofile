@@ -21,6 +21,7 @@ const navItems = [
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("#home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const updateActiveLink = () => {
@@ -31,6 +32,17 @@ const Navbar = () => {
     updateActiveLink();
     window.addEventListener("hashchange", updateActiveLink);
     return () => window.removeEventListener("hashchange", updateActiveLink);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -51,23 +63,39 @@ const Navbar = () => {
             />
           </a>
 
-          <div className="navbar-socials">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-                className="social-pill"
-              >
-                {social.name}
-              </a>
-            ))}
+          <div className="navbar-actions">
+            <div className="navbar-socials">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-pill"
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="navbar-list-toggle"
+              aria-label="Open section navigation"
+              aria-expanded={isSidebarOpen}
+              onClick={() => setIsSidebarOpen((open) => !open)}
+            >
+              <span className="navbar-list-toggle-icon">☰</span>
+              <span className="navbar-list-toggle-text">Menu</span>
+            </button>
           </div>
         </div>
       </header>
 
-      <LineSidebar />
+      <LineSidebar
+        isOpen={isSidebarOpen}
+        onNavigate={() => setIsSidebarOpen(false)}
+      />
     </>
   );
 };
