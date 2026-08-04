@@ -6,5 +6,16 @@ html {
   width: min(100%, 1400px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 30px clamp(20px, 4vw, 60px) 0;
+  padding: 30px clamp(12px, 2vw, 60px) 0;
+}
+
+.portfolio-app section {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 768px) {
+  .portfolio-app {
+    padding-inline: clamp(12px, 4vw, 20px);
+    padding-top: 16px;
+  }
 }

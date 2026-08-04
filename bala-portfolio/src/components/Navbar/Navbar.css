@@ -4,7 +4,8 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  margin-bottom: 24px;
+  width: min(100%, 1400px);
+  margin: 0 auto 24px;
   padding: 16px 24px;
   border-radius: 0 0 24px 24px;
   background: rgba(107, 94, 94, 0.186);
@@ -44,7 +45,7 @@
   display: inline-flex;
   flex-direction: column;
   line-height: 1.1;
-  font-size: 35px;
+  font-size: clamp(24px, 4vw, 35px);
   letter-spacing: 0.03em;
   font-family: 'Shrikhand', sans-serif;
 }
@@ -190,6 +191,15 @@
     align-items: flex-start;
   }
 
+  .navbar-socials {
+    width: 100%;
+  }
+
+  .social-pill {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
   .navbar-actions {
     width: 100%;
     flex-direction: column;
@@ -204,5 +214,24 @@
   .nav-link-divider {
     border-left: none;
     padding-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-text small {
+    letter-spacing: 0.12em;
+  }
+
+  .social-pill {
+    padding: 7px 10px;
+    font-size: 0.75rem;
+  }
+
+  .navbar-links {
+    justify-content: space-between;
+  }
+
+  .nav-link {
+    padding: 0;
   }
 }

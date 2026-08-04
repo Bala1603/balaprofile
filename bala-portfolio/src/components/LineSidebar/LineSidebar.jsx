@@ -58,16 +58,15 @@ export default function LineSidebar() {
 
   const onMove = (e) => {
     const rect = listRef.current.getBoundingClientRect();
-
     const y = e.clientY - rect.top;
+    const motionRadius = Math.max(72, Math.min(128, window.innerWidth * 0.1));
 
     itemRefs.current.forEach((item, i) => {
       const center = item.offsetTop + item.offsetHeight / 2;
-
       const distance = Math.abs(y - center);
 
       targetRef.current[i] = CURVES.smooth(
-        Math.max(0, 1 - distance / 100)
+        Math.max(0, 1 - distance / motionRadius)
       );
     });
 
