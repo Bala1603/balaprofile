@@ -14,39 +14,33 @@
     width:fit-content;
     max-height:calc(100vh - 160px);
     overflow:hidden;
-    transition:right 180ms ease, padding 180ms ease, border-radius 180ms ease, transform 180ms ease;
-    will-change:transform;
+    transition:right 180ms ease, padding 180ms ease, border-radius 180ms ease, transform 180ms ease, opacity 180ms ease;
+    will-change:transform, opacity;
 }
 
 .lineSidebar ul{
-
     margin:0;
-
     padding:0;
-
     list-style:none;
-
     display:flex;
-
     flex-direction:column;
-
     gap:24px;
-
 }
 
 .lineSidebar li{
     position:relative;
     cursor:pointer;
-    --effect:0;
-    transition:transform 240ms ease;
+    transition:transform 160ms ease;
 }
 
+.lineSidebar li:hover a,
 .lineSidebar li.active a {
     color:#fff;
 }
 
 .lineSidebar li.active .lineMarker {
     background:#ef4444;
+    opacity:1;
 }
 
 .lineSidebar a{
@@ -55,11 +49,14 @@
     font-size:clamp(14px, 1.2vw, 17px);
     font-weight:600;
     display:inline-block;
-    transform:translateX(calc(var(--effect) * 24px));
-    color:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #c9c9c9);
-    transition:color 160ms ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 160ms ease;
-    opacity:calc(0.58 + var(--effect) * 0.42);
+    transform:translateX(0);
+    transition:color 160ms ease, transform 160ms ease, opacity 160ms ease;
+    opacity:0.78;
     will-change:transform, color, opacity;
+}
+
+.lineSidebar li:hover a {
+    transform:translateX(-4px);
 }
 
 .lineMarker{
@@ -68,11 +65,11 @@
     top:50%;
     width:60px;
     height:2px;
-    background:color-mix(in srgb, #ef4444 calc(var(--effect) * 100%), #555);
+    background:#555;
     transform-origin:left;
-    transform:translateY(-50%) scaleX(calc(.68 + var(--effect)));
-    transition:transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background 160ms ease, opacity 160ms ease;
-    opacity:calc(0.4 + var(--effect) * 0.6);
+    transform:translateY(-50%) scaleX(0.68);
+    transition:transform 160ms ease, background 160ms ease, opacity 160ms ease;
+    opacity:0.55;
 }
 
 .lineSidebar li:not(:last-child)::after{

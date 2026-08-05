@@ -2,6 +2,7 @@ import {
   useRef,
   useEffect,
   useCallback,
+  useState,
 } from "react";
 
 import "./ClickSpark.css";
@@ -18,8 +19,39 @@ function ClickSpark({
 }) {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
+  const [isReducedMotion, setIsReducedMotion] =
+    useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const viewportQuery = window.matchMedia(
+      "(max-width: 768px)",
+    );
+
+    const updatePreferences = () => {
+      setIsReducedMotion(mediaQuery.matches);
+      setIsMobileView(viewportQuery.matches);
+    };
+
+    updatePreferences();
+
+    mediaQuery.addEventListener("change", updatePreferences);
+    viewportQuery.addEventListener("change", updatePreferences);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updatePreferences);
+      viewportQuery.removeEventListener("change", updatePreferences);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isReducedMotion || isMobileView) {
+      return undefined;
+    }
+
     const canvas = canvasRef.current;
 
     if (!canvas) {
@@ -78,7 +110,7 @@ function ClickSpark({
       resizeObserver.disconnect();
       window.clearTimeout(resizeTimeout);
     };
-  }, []);
+  }, [isReducedMotion, isMobileView]);
 
   const easeFunction = useCallback(
     (progress) => {
@@ -103,6 +135,10 @@ function ClickSpark({
   );
 
   useEffect(() => {
+    if (isReducedMotion || isMobileView) {
+      return undefined;
+    }
+
     const canvas = canvasRef.current;
 
     if (!canvas) {
@@ -118,6 +154,10 @@ function ClickSpark({
     let animationFrameId;
 
     const draw = (timestamp) => {
+      if (sparksRef.current.length === 0) {
+        return;
+      }
+
       const canvasRect = canvas.getBoundingClientRect();
 
       context.clearRect(
@@ -192,9 +232,15 @@ function ClickSpark({
     duration,
     easeFunction,
     extraScale,
+    isReducedMotion,
+    isMobileView,
   ]);
 
   const handleClick = (event) => {
+    if (isReducedMotion || isMobileView) {
+      return;
+    }
+
     const canvas = canvasRef.current;
 
     if (!canvas) {
@@ -226,11 +272,13 @@ function ClickSpark({
       className="click-spark-wrapper"
       onClick={handleClick}
     >
-      <canvas
-        ref={canvasRef}
-        className="click-spark-canvas"
-        aria-hidden="true"
-      />
+      {!isReducedMotion && !isMobileView && (
+        <canvas
+          ref={canvasRef}
+          className="click-spark-canvas"
+          aria-hidden="true"
+        />
+      )}
 
       <div className="click-spark-content">
         {children}
