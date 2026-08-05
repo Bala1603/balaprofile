@@ -4,7 +4,7 @@
     top:50%;
     transform:translateY(-50%);
     z-index:999;
-    background:#0b0b0b;
+    background:linear-gradient(180deg, rgba(12, 12, 12, 0.96), rgba(7, 7, 7, 0.92));
     border:1px solid rgba(92, 78, 78, 0.995);
     border-radius:28px;
     padding:24px 24px;
@@ -14,8 +14,19 @@
     width:fit-content;
     max-height:calc(100vh - 160px);
     overflow:hidden;
-    transition:right 180ms ease, padding 180ms ease, border-radius 180ms ease, transform 180ms ease, opacity 180ms ease;
+    transition:right 180ms ease, padding 180ms ease, border-radius 180ms ease, transform 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
     will-change:transform, opacity;
+    box-shadow:0 24px 55px rgba(0,0,0,0.32);
+}
+
+.lineSidebarContainer::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:radial-gradient(circle at top left, rgba(239,68,68,0.2), transparent 48%);
+    opacity:0.8;
+    pointer-events:none;
 }
 
 .lineSidebar ul{
@@ -30,17 +41,33 @@
 .lineSidebar li{
     position:relative;
     cursor:pointer;
-    transition:transform 160ms ease;
+    transition:transform 170ms ease, filter 170ms ease;
 }
 
-.lineSidebar li:hover a,
-.lineSidebar li.active a {
+.lineSidebar li:hover {
+    transform:translateX(-4px);
+    filter:drop-shadow(0 10px 18px rgba(239,68,68,0.18));
+}
+
+.lineSidebar li.active {
+    animation:activePulse 320ms ease;
+}
+
+.lineSidebar li:hover a {
     color:#fff;
 }
 
 .lineSidebar li.active .lineMarker {
-    background:#ef4444;
+    background:linear-gradient(90deg, #ef4444, #fb923c);
     opacity:1;
+    transform:translateY(-50%) scaleX(1);
+    box-shadow:0 0 16px rgba(239,68,68,0.65);
+}
+
+.lineSidebar li.active a {
+    color:#ff6b6b;
+    opacity:1;
+    text-shadow:0 0 16px rgba(239,68,68,0.95), 0 0 28px rgba(239,68,68,0.42);
 }
 
 .lineSidebar a{
@@ -50,13 +77,14 @@
     font-weight:600;
     display:inline-block;
     transform:translateX(0);
-    transition:color 160ms ease, transform 160ms ease, opacity 160ms ease;
+    transition:color 170ms ease, transform 170ms ease, opacity 170ms ease, text-shadow 170ms ease;
     opacity:0.78;
     will-change:transform, color, opacity;
 }
 
-.lineSidebar li:hover a {
-    transform:translateX(-4px);
+.lineSidebar li:hover a,
+.lineSidebar li.active a {
+    transform:translateX(-5px);
 }
 
 .lineMarker{
@@ -68,25 +96,31 @@
     background:#555;
     transform-origin:left;
     transform:translateY(-50%) scaleX(0.68);
-    transition:transform 160ms ease, background 160ms ease, opacity 160ms ease;
+    transition:transform 180ms cubic-bezier(0.22, 1, 0.36, 1), background 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
     opacity:0.55;
 }
 
+.lineSidebar li:hover .lineMarker {
+    background:#f87171;
+    opacity:0.95;
+    transform:translateY(-50%) scaleX(1);
+}
+
 .lineSidebar li:not(:last-child)::after{
-
     content:"";
-
     position:absolute;
-
     left:-70px;
-
     top:calc(100% + 12px);
-
     width:28px;
-
     height:1px;
-
     background:#555;
+    transition:background 180ms ease, transform 180ms ease;
+}
+
+.lineSidebar li:hover:not(:last-child)::after,
+.lineSidebar li.active:not(:last-child)::after {
+    background:rgba(239,68,68,0.9);
+    transform:scaleX(1.16);
 }
 
 @media (max-width: 900px) {
@@ -116,6 +150,18 @@
     }
 }
 
+@keyframes activePulse {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-4px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 @media (max-width: 560px) {
     .lineSidebarContainer {
         right: 8px;
@@ -128,6 +174,7 @@
         border-radius: 18px;
         max-width: 170px;
         max-height: calc(100vh - 24px);
+        box-shadow:0 16px 36px rgba(0,0,0,0.28);
     }
 
     .lineSidebarContainer.mobile-open {
