@@ -62,7 +62,6 @@ export default function LineSidebar({ isOpen = false, onNavigate }) {
               key={item.label}
               onClick={() => {
                 setActive(i);
-                onNavigate?.();
               }}
               className={active === i ? "active" : ""}
             >

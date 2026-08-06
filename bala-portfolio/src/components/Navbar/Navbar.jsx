@@ -6,8 +6,8 @@ import LineSidebar from "../LineSidebar/LineSidebar";
 import Decrypted from "../decrypted_text/decrypted";
 
 const socialLinks = [
-  { name: "GitHub", url: "https://github.com" },
-  { name: "LinkedIn", url: "https://www.linkedin.com" },
+  { name: "GitHub", url: "https://github.com/Bala1603" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/baladata/" },
 ];
 
 const navItems = [
@@ -92,10 +92,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      <LineSidebar
-        isOpen={isSidebarOpen}
-        onNavigate={() => setIsSidebarOpen(false)}
-      />
+      <LineSidebar isOpen={isSidebarOpen} />
     </>
   );
 };
